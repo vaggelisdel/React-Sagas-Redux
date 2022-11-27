@@ -5,7 +5,7 @@ import DisplayBalance from './DisplayBalance';
 const DisplayBalances = () => {
     return (
         <Segment textAlign='center'>
-            <Grid columns={2} devided>
+            <Grid columns={2} devided={"true"}>
                 <Grid.Row>
                     <Grid.Column>
                         <DisplayBalance title={"Incoming"} value={"1,045.50"} color={"green"} />
