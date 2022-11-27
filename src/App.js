@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Container } from 'semantic-ui-react';
 import './App.css';
 import DisplayBalance from './components/DisplayBalance';
@@ -16,17 +16,29 @@ const App = () => {
     setEntries(result);
   }
 
+  const addEntry = (description, value, isExpense) => {
+    const result = entries.concat({
+      id: entries.length + 1,
+      description,
+      value,
+      isExpense
+    })
+    setEntries(result);
+  }
+
   return (
     <Container>
 
       <MainHeader title={"Budget"} type={'h1'} />
       <DisplayBalance title={"Incoming"} value={"2,550.73"} size="small" />
-      <DisplayBalances />
 
-      <EntryLines entries={entries} deleteEntry={deleteEntry}/>
+      <DisplayBalances />
+      <MainHeader title={"History"} type={'h3'} />
+
+      <EntryLines entries={entries} deleteEntry={deleteEntry} />
 
       <MainHeader title={"Add new transaction"} type={'h3'} />
-      <NewEntryForm />
+      <NewEntryForm addEntry={addEntry} />
 
     </Container>
   );
