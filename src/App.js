@@ -20,7 +20,6 @@ const App = () => {
   const [expensesTotal, setExpensesTotal] = useState();
   const [total, setTotal] = useState();
 
-
   useEffect(() => {
     if (!isOpen && entryId) {
       const index = entries.findIndex((entry) => entry.id == entryId);
@@ -37,9 +36,9 @@ const App = () => {
     let totalIncomes = 0;
     let totalExpenses = 0;
     entries.map((entry) => {
-      if(entry.isExpense){
+      if (entry.isExpense) {
         return (totalExpenses += Number(entry.value))
-      }else{
+      } else {
         return (totalIncomes += Number(entry.value))
       }
     });
@@ -47,6 +46,7 @@ const App = () => {
     setIncomesTotal(totalIncomes);
     setExpensesTotal(totalExpenses);
   }, [entries]);
+
 
   const deleteEntry = (id) => {
     const result = entries.filter((entry) => entry.id !== id);
@@ -121,27 +121,27 @@ export default App;
 
 const initialEntries = [
   {
-    id: 1,
-    description: 'Work income',
-    value: 1000.00,
-    isExpense: false
+      id: 1,
+      description: 'Work income',
+      value: 1000.00,
+      isExpense: false
   },
   {
-    id: 2,
-    description: 'Water bill',
-    value: 20.0,
-    isExpense: true
+      id: 2,
+      description: 'Water bill',
+      value: 20.0,
+      isExpense: true
   },
   {
-    id: 3,
-    description: 'Rent',
-    value: 300,
-    isExpense: true
+      id: 3,
+      description: 'Rent',
+      value: 300,
+      isExpense: true
   },
   {
-    id: 4,
-    description: 'Power bill',
-    value: 50,
-    isExpense: true
+      id: 4,
+      description: 'Power bill',
+      value: 50,
+      isExpense: true
   }
-]
+];  
