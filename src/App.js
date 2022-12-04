@@ -7,14 +7,15 @@ import DisplayBalances from './components/DisplayBalances';
 import EntryLines from './components/EntryLines';
 import NewEntryForm from './components/NewEntryForm';
 import ModalEdit from './components/ModalEdit';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllEntries } from './actions/entries.actions';
 
 const App = () => {
   const [incomesTotal, setIncomesTotal] = useState();
   const [expensesTotal, setExpensesTotal] = useState();
   const [total, setTotal] = useState();
   const [entry, setEntry] = useState();
-  const {isOpen, id} = useSelector(state => state.modals);
+  const { isOpen, id } = useSelector(state => state.modals);
   const entries = useSelector(state => state.entries);
 
   useEffect(() => {
@@ -37,6 +38,11 @@ const App = () => {
     setExpensesTotal(totalExpenses);
   }, [entries]);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllEntries());
+  }, [])
 
   return (
     <Container>
@@ -52,8 +58,8 @@ const App = () => {
       />
 
       <MainHeader title={"Add new transaction"} type={'h3'} />
-      <NewEntryForm/>
-      
+      <NewEntryForm />
+
       <ModalEdit
         isOpen={isOpen}
         {...entry}
