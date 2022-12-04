@@ -11,10 +11,11 @@ const reducer = (state = initialEntries, action) => {
         case entriesTypes.REMOVE_ENTRY:
             newEntries = state.filter(entry => entry.id !== action.payload.id);
             return newEntries;
+        case entriesTypes.POPULATE_ENTRIES:
         case entriesTypes.UPDATE_ENTRY:
             newEntries = [...state];
             const index = newEntries.findIndex((entry) => entry.id == action.payload.id);
-            newEntries[index] = {...action.payload.entry}
+            newEntries[index] = {...action.newEntries,...action.payload.entry}
             return newEntries;
         default:
             return state;
